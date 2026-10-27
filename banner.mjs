@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("http://localhost:3000", { waitUntil: "networkidle" });
+await page.waitForTimeout(2600);
+await page.evaluate(() => window.scrollTo(0, 520));
+await page.waitForTimeout(1600);
+await page.screenshot({ path: "/home/user/previews/fx-banner.png" });
+await browser.close();
+console.log("banner done");
